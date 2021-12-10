@@ -1,0 +1,17 @@
+# IDE
+.idea/
+.gradle/
+.settings/
+
+#build
+/build/
+/bin/
+.project
+
+# test
+/src/test/java/cc/sukazyo/test
+/src/test/resources/test
+/src/test/resources/assets/test
+
+# debug dir
+/run/

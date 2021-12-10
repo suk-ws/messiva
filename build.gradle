@@ -1,0 +1,75 @@
+plugins {
+	id 'java'
+	id 'java-library'
+	id 'maven-publish'
+}
+
+group 'cc.sukazyo'
+version PROJECT_VERSION
+project.ext.archiveBaseName = 'Coeur_Morny_Cono'
+project.ext.artifactId = 'morny-coeur'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	
+	compileOnlyApi "com.github.spotbugs:spotbugs-annotations:${libSpotbugsVersion}"
+	
+	testImplementation "org.junit.jupiter:junit-jupiter-api:${libJUnitVersion}"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${libJUnitVersion}"
+	
+}
+
+test {
+	useJUnitPlatform()
+}
+
+java {
+	
+	sourceCompatibility JavaVersion.VERSION_1_8
+	targetCompatibility JavaVersion.VERSION_1_8
+	
+	withSourcesJar()
+	
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+}
+
+tasks.withType(Javadoc) {
+	options.encoding = 'UTF-8'
+	options.docEncoding = 'UTF-8'
+	options.charSet = 'UTF-8'
+}
+
+tasks.test {
+	useJUnitPlatform()
+}
+
+publishing {
+	repositories{
+		maven {
+			name 'builds'
+			url = "file://" + new File("./build/publishing").getAbsolutePath()
+		}
+		maven {
+			name '-ws-'
+			url publishMvnRepoUrl
+			credentials {
+				username publishMvnRepoUsername
+				password publishMvnRepoPassword
+			}
+		}
+	}
+	publications {
+		main (MavenPublication) {
+			from components.java
+			groupId = project.group
+			artifactId = project.ext.artifactId
+			version = project.version
+		}
+	}
+}
