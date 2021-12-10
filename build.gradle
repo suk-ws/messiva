@@ -6,8 +6,8 @@ plugins {
 
 group 'cc.sukazyo'
 version PROJECT_VERSION
-project.ext.archiveBaseName = 'Coeur_Morny_Cono'
-project.ext.artifactId = 'morny-coeur'
+project.ext.archiveBaseName = 'messiva'
+project.ext.artifactId = 'messiva'
 
 repositories {
 	mavenCentral()
