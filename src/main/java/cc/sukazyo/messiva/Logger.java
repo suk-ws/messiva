@@ -1,6 +1,7 @@
 package cc.sukazyo.messiva;
 
 import cc.sukazyo.messiva.appender.IAppender;
+import cc.sukazyo.messiva.log.ILogLevelImpl;
 import cc.sukazyo.messiva.log.Log;
 import cc.sukazyo.messiva.log.LogLevel;
 import cc.sukazyo.messiva.log.Message;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Logger {
+public class Logger implements ILogLevelImpl {
 	
 	public final List<IAppender> appends = new ArrayList<>();
 	
@@ -21,6 +22,10 @@ public class Logger {
 	
 	public void trace (String message) {
 		pushToAllAppender(new Log(1, new Message(message), LogLevel.TRACE));
+	}
+	
+	public void debug (String message) {
+		pushToAllAppender(new Log(1, new Message(message), LogLevel.DEBUG));
 	}
 	
 	public void info (String message) {

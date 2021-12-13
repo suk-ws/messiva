@@ -3,6 +3,7 @@ package cc.sukazyo.messiva.log;
 public enum LogLevel {
 	
 	TRACE(-1f, "TRAC"),
+	DEBUG(-0.1f, "DBUG"),
 	INFO(0f, "INFO"),
 	WARN(0.5f, "WARN"),
 	ERROR(1f, "ERRO"),
