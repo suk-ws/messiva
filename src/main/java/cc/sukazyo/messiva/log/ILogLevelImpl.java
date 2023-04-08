@@ -10,6 +10,8 @@ public interface ILogLevelImpl {
 	
 	void warn (String message);
 	
+	void warning (String message);
+	
 	void error (String message);
 	
 	void fatal (String message);

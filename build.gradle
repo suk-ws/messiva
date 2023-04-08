@@ -4,18 +4,21 @@ plugins {
 	id 'maven-publish'
 }
 
+repositories {
+	mavenCentral()
+}
+
 group 'cc.sukazyo'
 version PROJECT_VERSION
 project.ext.archiveBaseName = 'messiva'
 project.ext.artifactId = 'messiva'
 
-repositories {
-	mavenCentral()
-}
-
 dependencies {
 	
 	compileOnlyApi "com.github.spotbugs:spotbugs-annotations:${libSpotbugsVersion}"
+	
+	implementation "org.jline:jline:${libJLineVersion}"
+	implementation "org.fusesource.jansi:jansi:${libJansiVersion}"
 	
 	testImplementation "org.junit.jupiter:junit-jupiter-api:${libJUnitVersion}"
 	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${libJUnitVersion}"
@@ -35,11 +38,11 @@ java {
 	
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
 	options.encoding = "UTF-8"
 }
 
-tasks.withType(Javadoc) {
+tasks.withType(Javadoc).configureEach {
 	options.encoding = 'UTF-8'
 	options.docEncoding = 'UTF-8'
 	options.charSet = 'UTF-8'

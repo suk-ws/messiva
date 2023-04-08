@@ -1,46 +1,32 @@
 package cc.sukazyo.messiva.appender;
 
+import cc.sukazyo.messiva.formatter.ILogFormatter;
 import cc.sukazyo.messiva.log.Log;
 import cc.sukazyo.messiva.utils.StringUtils;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ConsoleAppender implements IAppender {
+public class ConsoleAppender extends AppenderRestrictableByLevel {
 	
-	private final ReentrantLock syncLock = new ReentrantLock();
+	@Nonnull private final ReentrantLock syncLock;
 	
-//	private final AppendDaemon DAEMON;
-//	private static class AppendDaemon extends Thread {
-//		public AppendDaemon () { this.setName("console-appender-daemon::" + UUID.randomUUID()); }
-//		@Override public void run () {
-//
-//		}
-//	}
-//
-	public ConsoleAppender() {
-//		DAEMON = new AppendDaemon();
-//		DAEMON.start();
+	public ConsoleAppender (@Nullable ILogFormatter formatter) {
+		super(formatter);
+		syncLock = new ReentrantLock();
+	}
+	
+	public ConsoleAppender () {
+		this(null);
 	}
 	
 	@Override
-	public void pushLog (Log log) {
+	public void pushLogChecked (@Nonnull Log log) {
+		if (formatter == null) return;
 		syncLock.lock();
-		System.out.println(formatMessage(log));
+		System.out.println(formatter.format(log));
 		syncLock.unlock();
-	}
-	
-	private static String formatMessage (Log log) {
-		final StringBuilder message = new StringBuilder();
-		message.append('[').append(log.timestamp)
-				.append("][").append(log.thread.getName())
-				.append("]");
-		final String promptNewline = StringUtils.repeatChar('\'', message.length());
-		message.append('[').append(log.level.tag).append(']').append(log.message.message[0]);
-		for (int i = 1; i < log.message.message.length; i++) {
-			message.append('\n').append(promptNewline)
-					.append('[').append(log.level.tag).append(']').append(log.message.message[i]);
-		}
-		return message.toString();
 	}
 	
 }
