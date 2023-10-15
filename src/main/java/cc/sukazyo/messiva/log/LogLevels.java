@@ -1,6 +1,6 @@
 package cc.sukazyo.messiva.log;
 
-public enum LogLevel {
+public enum LogLevels implements ILogLevel {
 	
 	ALL  (-Float.MAX_VALUE, "####"),
 	TRACE(-1f,       "TRAC"),
@@ -14,9 +14,15 @@ public enum LogLevel {
 	public final float level;
 	public final String tag;
 	
-	LogLevel (float level, String tag) {
+	LogLevels (float level, String tag) {
 		this.level = level;
 		this.tag = tag;
 	}
+	
+	@Override
+	public float level () { return this.level; }
+	
+	@Override
+	public String tag () { return this.tag; }
 	
 }

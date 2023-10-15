@@ -1,16 +1,20 @@
 package cc.sukazyo.messiva.log;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+
 import cc.sukazyo.messiva.utils.StackUtils;
 
 public class Log {
 	
-	public final Message message;
-	public final LogLevel level;
+	@Nonnull public final Message message;
+	@Nonnull public final ILogLevel level;
 	public final long timestamp;
-	public final Thread thread;
-	public final StackTraceElement[] stackTrace;
+	@Nonnull public final Thread thread;
+	@Nonnull public final StackTraceElement[] stackTrace;
 	
-	public Log (Message message, LogLevel level, Thread thread, long timestamp, StackTraceElement[] stackTrace) {
+	public Log (@Nonnull Message message, @Nonnull ILogLevel level,
+	@Nonnull Thread thread,long timestamp, @Nonnull StackTraceElement[] stackTrace) {
 		this.message = message;
 		this.level = level;
 		this.thread = thread;
@@ -18,27 +22,34 @@ public class Log {
 		this.stackTrace = stackTrace;
 	}
 	
-	public Log (int stackOffset, Message message, LogLevel level, Thread thread, long timestamp) {
+	public Log (@Nonnegative int stackOffset,
+	@Nonnull Message message, @Nonnull ILogLevel level,
+	@Nonnull Thread thread, long timestamp) {
 		this(message, level, thread, timestamp, StackUtils.getStackTrace(stackOffset+1));
 	}
 	
-	public Log (Message message, LogLevel level, Thread thread, long timestamp) {
+	public Log (@Nonnull Message message, @Nonnull ILogLevel level,
+	@Nonnull Thread thread, long timestamp) {
 		this(1, message, level, thread, timestamp);
 	}
 	
-	public Log (int stackOffset, Message message, LogLevel level, Thread thread) {
+	public Log (@Nonnegative int stackOffset,
+	@Nonnull Message message, @Nonnull ILogLevel level,
+	@Nonnull Thread thread) {
 		this(stackOffset+1, message, level, thread, System.currentTimeMillis());
 	}
 	
-	public Log (Message message, LogLevel level, Thread thread) {
+	public Log (@Nonnull Message message, @Nonnull ILogLevel level,
+	@Nonnull Thread thread) {
 		this(1, message, level, thread);
 	}
 	
-	public Log (int stackOffset, Message message, LogLevel level) {
+	public Log (@Nonnegative int stackOffset,
+	@Nonnull Message message, @Nonnull ILogLevel level) {
 		this(stackOffset+1, message, level, Thread.currentThread());
 	}
 	
-	public Log (Message message, LogLevel level) {
+	public Log (@Nonnull Message message, @Nonnull ILogLevel level) {
 		this(1, message, level);
 	}
 	

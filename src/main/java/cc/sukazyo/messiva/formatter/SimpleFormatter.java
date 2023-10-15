@@ -22,10 +22,10 @@ public class SimpleFormatter implements ILogFormatter {
 		message.append(startTimestamp).append(log.timestamp).append(endTimestamp)
 				.append(startThreadName).append(log.thread.getName()).append(endThreadName);
 		final String promptNewline = StringUtils.repeatChar(followingLineFillChar, message.length());
-		message.append(startLevelTag).append(log.level.tag).append(endLevelTag).append(log.message.message[0]);
+		message.append(startLevelTag).append(log.level.tag()).append(endLevelTag).append(log.message.message[0]);
 		for (int i = 1; i < log.message.message.length; i++) {
 			message.append('\n').append(promptNewline)
-					.append(startLevelTag).append(log.level.tag).append(endLevelTag).append(log.message.message[i]);
+					.append(startLevelTag).append(log.level.tag()).append(endLevelTag).append(log.message.message[i]);
 		}
 		return message.toString();
 	}

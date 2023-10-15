@@ -1,51 +1,52 @@
 package cc.sukazyo.messiva.component;
 
-import cc.sukazyo.messiva.log.LogLevel;
+import cc.sukazyo.messiva.log.ILogLevel;
+import cc.sukazyo.messiva.log.LogLevels;
 
 import javax.annotation.Nonnull;
 
 public class LevelRestrictComponent {
 	
-	@Nonnull private LogLevel minLevel;
-	@Nonnull private LogLevel maxLevel;
+	@Nonnull private ILogLevel minLevel;
+	@Nonnull private ILogLevel maxLevel;
 	
-	public LevelRestrictComponent (@Nonnull LogLevel minLevel, @Nonnull LogLevel maxLevel) {
+	public LevelRestrictComponent (@Nonnull ILogLevel minLevel, @Nonnull ILogLevel maxLevel) {
 		this.minLevel = minLevel;
 		this.maxLevel = maxLevel;
 	}
 	
-	public LevelRestrictComponent (@Nonnull LogLevel minLevel) {
-		this(minLevel, LogLevel.NONE);
+	public LevelRestrictComponent (@Nonnull ILogLevel minLevel) {
+		this(minLevel, LogLevels.NONE);
 	}
 	
 	public LevelRestrictComponent () {
-		this(LogLevel.ALL);
+		this(LogLevels.ALL);
 	}
 	
 	@Nonnull
-	public LevelRestrictComponent minLevel (@Nonnull LogLevel minLevel) {
+	public LevelRestrictComponent minLevel (@Nonnull ILogLevel minLevel) {
 		this.minLevel = minLevel;
 		return this;
 	}
 	
 	@Nonnull
-	public LevelRestrictComponent maxLevel (@Nonnull LogLevel maxLevel) {
+	public LevelRestrictComponent maxLevel (@Nonnull ILogLevel maxLevel) {
 		this.maxLevel = maxLevel;
 		return this;
 	}
 	
 	@Nonnull
-	public LogLevel minLevel () {
+	public ILogLevel minLevel () {
 		return this.minLevel;
 	}
 	
 	@Nonnull
-	public LogLevel maxLevel () {
+	public ILogLevel maxLevel () {
 		return this.maxLevel;
 	}
 	
-	public boolean checkLevel (@Nonnull LogLevel level) {
-		return level.level >= minLevel.level && level.level <= maxLevel.level;
+	public boolean checkLevel (@Nonnull ILogLevel level) {
+		return level.level() >= minLevel.level() && level.level() <= maxLevel.level();
 	}
 	
 }

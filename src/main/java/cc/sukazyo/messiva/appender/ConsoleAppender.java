@@ -2,10 +2,11 @@ package cc.sukazyo.messiva.appender;
 
 import cc.sukazyo.messiva.formatter.ILogFormatter;
 import cc.sukazyo.messiva.log.Log;
-import cc.sukazyo.messiva.utils.StringUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import java.util.Objects;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConsoleAppender extends AppenderRestrictableByLevel {

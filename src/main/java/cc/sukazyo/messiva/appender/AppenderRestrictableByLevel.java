@@ -2,8 +2,8 @@ package cc.sukazyo.messiva.appender;
 
 import cc.sukazyo.messiva.component.LevelRestrictComponent;
 import cc.sukazyo.messiva.formatter.ILogFormatter;
+import cc.sukazyo.messiva.log.ILogLevel;
 import cc.sukazyo.messiva.log.Log;
-import cc.sukazyo.messiva.log.LogLevel;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -22,13 +22,13 @@ public abstract class AppenderRestrictableByLevel extends Appender {
 	}
 	
 	@Nonnull
-	public AppenderRestrictableByLevel minLevel(@Nonnull LogLevel minLevel) {
+	public AppenderRestrictableByLevel minLevel(@Nonnull ILogLevel minLevel) {
 		levelSetting.minLevel(minLevel);
 		return this;
 	}
 	
 	@Nonnull
-	public AppenderRestrictableByLevel maxLevel(@Nonnull LogLevel maxLevel) {
+	public AppenderRestrictableByLevel maxLevel(@Nonnull ILogLevel maxLevel) {
 		levelSetting.maxLevel(maxLevel);
 		return this;
 	}

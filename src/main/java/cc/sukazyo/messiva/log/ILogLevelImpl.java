@@ -16,4 +16,18 @@ public interface ILogLevelImpl {
 	
 	void fatal (String message);
 	
+	void trace (Message message);
+	
+	void debug (Message message);
+	
+	void info (Message message);
+	
+	void warn (Message message);
+	
+	void warning (Message message);
+	
+	void error (Message message);
+	
+	void fatal (Message message);
+	
 }
