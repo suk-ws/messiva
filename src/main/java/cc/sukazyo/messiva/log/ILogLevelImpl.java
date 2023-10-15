@@ -1,33 +1,35 @@
 package cc.sukazyo.messiva.log;
 
+import javax.annotation.Nonnull;
+
 public interface ILogLevelImpl {
 	
-	void trace (String message);
+	void trace (@Nonnull String message);
 	
-	void debug (String message);
+	void debug (@Nonnull String message);
 	
-	void info (String message);
+	void info (@Nonnull String message);
 	
-	void warn (String message);
+	void warn (@Nonnull String message);
 	
-	void warning (String message);
+	void warning (@Nonnull String message);
 	
-	void error (String message);
+	void error (@Nonnull String message);
 	
-	void fatal (String message);
+	void fatal (@Nonnull String message);
 	
-	void trace (Message message);
+	void trace (@Nonnull Message message);
 	
-	void debug (Message message);
+	void debug (@Nonnull Message message);
 	
-	void info (Message message);
+	void info (@Nonnull Message message);
 	
-	void warn (Message message);
+	void warn (@Nonnull Message message);
 	
-	void warning (Message message);
+	void warning (@Nonnull Message message);
 	
-	void error (Message message);
+	void error (@Nonnull Message message);
 	
-	void fatal (Message message);
+	void fatal (@Nonnull Message message);
 	
 }

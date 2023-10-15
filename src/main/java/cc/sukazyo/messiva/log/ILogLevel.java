@@ -1,6 +1,8 @@
 package cc.sukazyo.messiva.log;
 
+import javax.annotation.Nonnull;
+
 public interface ILogLevel {
 	float level();
-	String tag();
+	@Nonnull String tag();
 }

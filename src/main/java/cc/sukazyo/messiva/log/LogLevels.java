@@ -1,5 +1,7 @@
 package cc.sukazyo.messiva.log;
 
+import javax.annotation.Nonnull;
+
 public enum LogLevels implements ILogLevel {
 	
 	ALL  (-Float.MAX_VALUE, "####"),
@@ -12,9 +14,9 @@ public enum LogLevels implements ILogLevel {
 	NONE(Float.MAX_VALUE,  "!!!!");
 	
 	public final float level;
-	public final String tag;
+	@Nonnull public final String tag;
 	
-	LogLevels (float level, String tag) {
+	LogLevels (float level, @Nonnull String tag) {
 		this.level = level;
 		this.tag = tag;
 	}
@@ -22,6 +24,7 @@ public enum LogLevels implements ILogLevel {
 	@Override
 	public float level () { return this.level; }
 	
+	@Nonnull
 	@Override
 	public String tag () { return this.tag; }
 	
