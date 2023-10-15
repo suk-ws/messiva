@@ -17,11 +17,11 @@ dependencies {
 	
 	compileOnlyApi "com.github.spotbugs:spotbugs-annotations:${libSpotbugsVersion}"
 	
-	implementation "org.jline:jline:${libJLineVersion}"
-	implementation "org.fusesource.jansi:jansi:${libJansiVersion}"
+//	implementation "org.jline:jline:${libJLineVersion}"
+//	implementation "org.fusesource.jansi:jansi:${libJansiVersion}"
 	
-	testImplementation "org.junit.jupiter:junit-jupiter-api:${libJUnitVersion}"
-	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${libJUnitVersion}"
+//	testImplementation "org.junit.jupiter:junit-jupiter-api:${libJUnitVersion}"
+//	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${libJUnitVersion}"
 	
 }
 
