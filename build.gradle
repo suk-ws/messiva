@@ -6,6 +6,14 @@ plugins {
 
 repositories {
 	mavenCentral()
+	maven {
+		name "wsReleases"
+		url "https://mvn.sukazyo.cc/releases"
+	}
+	maven {
+		name "wsSnapshots"
+		url "https://mvn.sukazyo.cc/snapshots"
+	}
 }
 
 group 'cc.sukazyo'
@@ -16,6 +24,7 @@ project.ext.artifactId = 'messiva'
 dependencies {
 	
 	compileOnlyApi "com.github.spotbugs:spotbugs-annotations:${libSpotbugsVersion}"
+	implementation "cc.sukazyo:da4a:0.2.0-SNAPSHOT"
 	
 //	implementation "org.jline:jline:${libJLineVersion}"
 //	implementation "org.fusesource.jansi:jansi:${libJansiVersion}"
@@ -50,6 +59,10 @@ tasks.withType(Javadoc).configureEach {
 
 tasks.test {
 	useJUnitPlatform()
+}
+
+configurations.configureEach {
+	resolutionStrategy.cacheChangingModulesFor 1, 'seconds'
 }
 
 publishing {

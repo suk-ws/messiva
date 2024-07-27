@@ -1,33 +1,17 @@
 package cc.sukazyo.messiva.appender;
 
 import cc.sukazyo.messiva.formatter.ILogFormatter;
-import cc.sukazyo.messiva.log.Log;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import java.util.Objects;
-import java.util.concurrent.locks.ReentrantLock;
-
-public class ConsoleAppender extends AppenderRestrictableByLevel {
-	
-	@Nonnull private final ReentrantLock syncLock;
+/**
+ * @deprecated moved. use {@link cc.sukazyo.messiva.appender.impl.ConsoleAppender} instead.
+ */
+@Deprecated
+public class ConsoleAppender extends cc.sukazyo.messiva.appender.impl.ConsoleAppender {
 	
 	public ConsoleAppender (@Nullable ILogFormatter formatter) {
 		super(formatter);
-		syncLock = new ReentrantLock();
-	}
-	
-	public ConsoleAppender () {
-		this(null);
-	}
-	
-	@Override
-	public void pushLogChecked (@Nonnull Log log) {
-		if (formatter == null) return;
-		syncLock.lock();
-		System.out.println(formatter.format(log));
-		syncLock.unlock();
 	}
 	
 }

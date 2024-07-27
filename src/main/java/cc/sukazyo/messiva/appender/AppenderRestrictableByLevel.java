@@ -34,7 +34,7 @@ public abstract class AppenderRestrictableByLevel extends Appender {
 	}
 	
 	public void pushLog (@Nonnull Log log) {
-		if (!levelSetting.checkLevel(log.level)) return;
+		if (!levelSetting.checkLevel(log.level())) return;
 		pushLogChecked(log);
 	}
 	

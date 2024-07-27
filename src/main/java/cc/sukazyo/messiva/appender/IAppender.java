@@ -8,4 +8,9 @@ public interface IAppender {
 	
 	void pushLog (@Nonnull Log log);
 	
+	@Nonnull
+	default AppenderProvider asProvider () {
+		return new StaticAppenderProvider(this);
+	}
+	
 }

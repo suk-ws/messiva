@@ -1,5 +1,7 @@
 package cc.sukazyo.messiva.log;
 
+import cc.sukazyo.messiva.log.message.IMessage;
+
 import javax.annotation.Nonnull;
 
 public interface ILogLevelImpl {
@@ -18,18 +20,18 @@ public interface ILogLevelImpl {
 	
 	void fatal (@Nonnull String message);
 	
-	void trace (@Nonnull Message message);
+	void trace (@Nonnull IMessage message);
 	
-	void debug (@Nonnull Message message);
+	void debug (@Nonnull IMessage message);
 	
-	void info (@Nonnull Message message);
+	void info (@Nonnull IMessage message);
 	
-	void warn (@Nonnull Message message);
+	void warn (@Nonnull IMessage message);
 	
-	void warning (@Nonnull Message message);
+	void warning (@Nonnull IMessage message);
 	
-	void error (@Nonnull Message message);
+	void error (@Nonnull IMessage message);
 	
-	void fatal (@Nonnull Message message);
+	void fatal (@Nonnull IMessage message);
 	
 }

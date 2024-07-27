@@ -1,15 +1,26 @@
 package cc.sukazyo.messiva.log;
 
+import cc.sukazyo.messiva.log.message.TextMessage;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class Message {
+/**
+ * @deprecated API changed. Use {@link cc.sukazyo.messiva.log.message.IMessage} or {@link TextMessage}
+ *             instead.
+ */
+@Deprecated
+public class Message extends TextMessage {
 	
+	/**
+	 * Due to API changes, this field is no longer used and will always be empty.
+	 */
 	@Nonnull
-	public final String[] message;
+	@Deprecated
+	public final String[] message = new String[]{};
 	
 	public Message(@Nullable String message) {
-		this.message = message == null ? new String[]{} : message.split("\n");
+		super(message);
 	}
 	
 }

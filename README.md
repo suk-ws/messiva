@@ -36,7 +36,7 @@ dependencies {
 Set up your own logger:
 ```java
 import cc.sukazyo.messiva.logger.Logger;
-import cc.sukazyo.messiva.appender.ConsoleAppender;
+import cc.sukazyo.messiva.appender.impl.ConsoleAppender;
 import cc.sukazyo.messiva.formatter.SimpleFormatter;
 
 // currently only implementation within messiva
