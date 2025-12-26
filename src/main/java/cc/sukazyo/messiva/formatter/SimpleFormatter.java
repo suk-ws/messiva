@@ -1,6 +1,7 @@
 package cc.sukazyo.messiva.formatter;
 
 import cc.sukazyo.messiva.log.Log;
+import cc.sukazyo.messiva.log.LogLevelNameMapper;
 import cc.sukazyo.messiva.utils.StringUtils;
 
 import javax.annotation.Nonnull;
@@ -29,20 +30,22 @@ public class SimpleFormatter implements ILogFormatter {
 		
 		final StringBuilder message = new StringBuilder();
 		
+		final String[] text = StringUtils.lines(log.message().getText());
+		
 		final String formattedTime = startTimestamp + this.formatTimestamp(log) + endTimestamp;
 		final String formattedThread = startThreadName + log.thread().getName() + endThreadName;
 		final String formattedCodePoint = startCodePoint + this.formatCodepoint(log) + endCodePoint;
-		final String formattedLevel = startLevelTag + log.level().tag() + endLevelTag;
+		final String formattedLevel = startLevelTag + LogLevelNameMapper.GLOBAL.getName(log.level()) + endLevelTag;
 		
 		final String formattedPromptOnlyNewline = formattedTime + formattedCodePoint + formattedThread;
 		final String formattedPrompt = formattedPromptOnlyNewline + formattedLevel;
 		final String formattedPromptFollowing = StringUtils.repeatChar(followingLineFillChar, formattedPromptOnlyNewline.length()) + formattedLevel;
 		
 		message.append(formattedPrompt)
-				.append(messageSeparator).append(log.message().getLines()[0]);
-		for (int i = 1; i < log.message().getLines().length; i++) {
+				.append(messageSeparator).append(text[0]);
+		for (int i = 1; i < text.length; i++) {
 			message.append('\n').append(formattedPromptFollowing)
-					.append(messageSeparator).append(log.message().getLines()[i]);
+					.append(messageSeparator).append(text[i]);
 		}
 		
 		return message.toString();

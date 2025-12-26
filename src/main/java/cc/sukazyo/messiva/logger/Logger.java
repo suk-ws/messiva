@@ -1,4 +1,4 @@
-package cc.sukazyo.messiva.logger;
+/*package cc.sukazyo.messiva.logger;
 
 import cc.sukazyo.messiva.appender.AppenderProvider;
 import cc.sukazyo.messiva.component.LevelRestrictComponent;
@@ -22,7 +22,7 @@ public class Logger implements ILogLevelImpl {
 	/**
 	 * @deprecated API changes. use {@link #appenderProviders} instead. This field will always
 	 *             be empty.
-	 */
+	 *//*
 	@Deprecated
 	@Nonnull public final List<IAppender> appends = Collections.emptyList();
 	
@@ -143,3 +143,4 @@ public class Logger implements ILogLevelImpl {
 	}
 	
 }
+*/

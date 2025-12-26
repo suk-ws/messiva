@@ -4,6 +4,7 @@ import cc.sukazyo.messiva.log.message.IMessage;
 
 import javax.annotation.Nonnull;
 
+@Deprecated
 public interface ILogLevelImpl {
 	
 	void trace (@Nonnull String message);

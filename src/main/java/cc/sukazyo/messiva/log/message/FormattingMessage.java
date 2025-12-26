@@ -17,9 +17,4 @@ public class FormattingMessage implements IMessage {
 		return String.format(template, params);
 	}
 	
-	@Override
-	public String[] getLines () {
-		return new String[0];
-	}
-	
 }

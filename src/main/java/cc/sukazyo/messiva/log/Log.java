@@ -53,16 +53,16 @@ public class Log {
 		this.stackTrace = stackTrace;
 	}
 	
-//	public Log (
-//			@Nonnull IMessage message, @Nonnull ILogLevel level,
-//			@Nonnull Thread thread, long timestamp
-//	) {
-//		this(
-//				message, level, thread, timestamp,
-//				StacksExtensions.dropWhileClass(Log.class, WithCurrentStack.getStackTrace(0))
-//		);
-//	}
-//
+	public Log (
+			@Nonnull IMessage message, @Nonnull ILogLevel level,
+			@Nonnull Thread thread, long timestamp
+	) {
+		this(
+				message, level, thread, timestamp,
+				StacksExtensions.dropWhileClass(Log.class, WithCurrentStack.getStackTrace(0))
+		);
+	}
+	
 //	public Log (@Nonnull IMessage message, @Nonnull ILogLevel level, @Nonnull Thread thread) {
 //		this(message, level, thread, System.currentTimeMillis());
 //	}

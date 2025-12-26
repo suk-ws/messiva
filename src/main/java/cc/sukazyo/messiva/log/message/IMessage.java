@@ -4,7 +4,4 @@ public interface IMessage {
 	
 	String getText ();
 	
-	@Deprecated
-	String[] getLines ();
-	
 }
