@@ -12,4 +12,9 @@ public class StringUtils {
 		return new String(chars);
 	}
 	
+	@Nonnull
+	public static String[] lines (@Nonnull String message) {
+		return message.split("\\n");
+	}
+	
 }

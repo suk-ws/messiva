@@ -4,5 +4,6 @@ import javax.annotation.Nonnull;
 
 public interface ILogLevel {
 	float level();
-	@Nonnull String tag();
+	@Nonnull String id();
+	@Deprecated @Nonnull String tag();
 }

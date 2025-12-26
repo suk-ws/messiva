@@ -1,23 +1,26 @@
 package cc.sukazyo.messiva.log.message;
 
+import cc.sukazyo.messiva.utils.StringUtils;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TextMessage implements IMessage {
 	
-	@Nonnull String[] message;
+	@Nonnull String message;
 	
 	public TextMessage (@Nullable String message) {
-		this.message = message != null ? message.split("\\n") : new String[]{};
+		this.message = message == null ? "" : message;
 	}
 	
-	public TextMessage (@Nonnull String[] messageLines) {
-		this.message = messageLines;
+	@Override
+	public String getText () {
+		return message;
 	}
 	
 	@Override
 	public String[] getLines () {
-		return message;
+		return StringUtils.lines(message);
 	}
 	
 }
