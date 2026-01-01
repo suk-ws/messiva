@@ -2,6 +2,7 @@ package cc.sukazyo.messiva.log;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import cc.sukazyo.messiva.log.message.IMessage;
 import cc.sukazyo.std.contexts.GivenContext;
@@ -20,12 +21,14 @@ public class Log {
 	@Nonnull private final Thread thread;
 	@Nonnull private final StackTraceElement[] stackTrace;
 	@Nonnull private final GivenContext context = GivenContext.apply();
+	@Nullable private Exception exception = null;
 	
 	@Nonnull public IMessage message () { return this.message; }
 	@Nonnull public ILogLevel level () { return this.level; }
 	@Nonnegative public long timestamp () { return this.timestamp; }
 	@Nonnull public Thread thread () { return this.thread; }
 	@Nonnull public StackTraceElement[] rawStackTrace () { return this.stackTrace; }
+	@Nullable public Exception exception () { return this.exception; }
 	@Nonnull public GivenContext context () { return this.context; }
 	
 	/**
@@ -84,22 +87,26 @@ public class Log {
 		this.stackTrace = stackTrace;
 	}
 	
-	public Log (
-			@Nonnull IMessage message, @Nonnull ILogLevel level,
-			@Nonnull Thread thread, long timestamp
-	) {
-		this(
-				message, level, thread, timestamp,
+	@Nonnull
+	public static Log of (@Nonnull ILogLevel level, @Nonnull IMessage message) {
+		return new Log(
+				message, level,
+				Thread.currentThread(),
+				System.currentTimeMillis(),
 				WithCurrentStack.getStackTrace(0)
 		);
 	}
 	
-	public Log (@Nonnull ILogLevel level, @Nonnull IMessage message) {
-		this(
+	@Nonnull
+	public static Log of (@Nonnull ILogLevel level, @Nonnull Exception e, @Nonnull IMessage message) {
+		final Log log = new Log(
 				message, level,
 				Thread.currentThread(),
-				System.currentTimeMillis()
+				System.currentTimeMillis(),
+				WithCurrentStack.getStackTrace(0)
 		);
+		log.exception = e;
+		return log;
 	}
 	
 //	public Log (@Nonnull IMessage message, @Nonnull ILogLevel level, @Nonnull Thread thread) {
@@ -161,9 +168,9 @@ public class Log {
 //
 //	/// #endblock old_constructors
 	
-	public Log withContext (@Nonnull Consumer<GivenContext> consumer) {
-		consumer.accept(this.context());
-		return this;
-	}
+//	public Log withContext (@Nonnull Consumer<GivenContext> consumer) {
+//		consumer.accept(this.context());
+//		return this;
+//	}
 	
 }

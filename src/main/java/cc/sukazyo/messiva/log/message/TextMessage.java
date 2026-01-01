@@ -11,6 +11,11 @@ public class TextMessage implements IMessage {
 		this.message = message == null ? "" : message;
 	}
 	
+	@Nonnull
+	public static TextMessage of (@Nullable String message) {
+		return new TextMessage(message);
+	}
+	
 	@Override
 	public String getText () {
 		return message;

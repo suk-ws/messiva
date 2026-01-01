@@ -1,7 +1,7 @@
 package cc.sukazyo.messiva.manager;
 
 import cc.sukazyo.messiva.log.Log;
-import cc.sukazyo.messiva.logger.ILoggerProvider;
+import cc.sukazyo.messiva.logger.LoggerProvider;
 import cc.sukazyo.messiva.logger.LogReceiver;
 import cc.sukazyo.messiva.logger.Logger;
 import cc.sukazyo.messiva.logger.ManagedLogger;
@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageManager implements ILoggerProvider, LogReceiver {
+public class MessageManager implements LoggerProvider, LogReceiver {
 	
 	private final List<LoggingContext> loggingContexts = new ArrayList<>();
 	

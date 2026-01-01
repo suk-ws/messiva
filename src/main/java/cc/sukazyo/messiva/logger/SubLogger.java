@@ -20,6 +20,12 @@ public class SubLogger implements Logger {
 	
 	@Nonnull
 	@Override
+	public AbstractLogger self () {
+		return this;
+	}
+	
+	@Nonnull
+	@Override
 	public String getName () {
 		return this.name;
 	}

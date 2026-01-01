@@ -16,7 +16,6 @@ public interface ILoggerInfo {
 	 */
 	@Nonnull String getName();
 	
-	
 	/**
 	 * Full name of this logger. Contains all the parents names and its own name.
 	 *
