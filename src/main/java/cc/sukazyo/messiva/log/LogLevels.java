@@ -13,6 +13,16 @@ public enum LogLevels implements ILogLevel {
 	FATAL(10000f,           "fatal"),
 	NONE (Float.MAX_VALUE,  "none");
 	
+	static {
+		LogLevelNameMapper.GLOBAL.mapName(LogLevels.ALL,   "####");
+		LogLevelNameMapper.GLOBAL.mapName(LogLevels.DEBUG, "DBUG");
+		LogLevelNameMapper.GLOBAL.mapName(LogLevels.INFO,  "INFO");
+		LogLevelNameMapper.GLOBAL.mapName(LogLevels.WARN,  "WARN");
+		LogLevelNameMapper.GLOBAL.mapName(LogLevels.ERROR, "ERRO");
+		LogLevelNameMapper.GLOBAL.mapName(LogLevels.FATAL, "FTAL");
+		LogLevelNameMapper.GLOBAL.mapName(LogLevels.NONE,  "!!!!");
+	}
+	
 	public final float level;
 	@Nonnull public final String id;
 	

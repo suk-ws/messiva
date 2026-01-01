@@ -11,9 +11,7 @@ public class TimePrefix implements PrefixSegment {
 	@Nonnull
 	@Override
 	public String text (@Nonnull Log log) {
-		return DateTimeFormatter.ISO_DATE_TIME.format(
-				new Timestamp(log.timestamp()).toInstant()
-		);
+		return String.valueOf(log.timestamp());
 	}
 	
 }

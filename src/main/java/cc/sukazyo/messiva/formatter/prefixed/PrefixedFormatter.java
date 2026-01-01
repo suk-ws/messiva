@@ -40,9 +40,10 @@ public abstract class PrefixedFormatter implements ILogFormatter {
 		// fixme: complete the remaining un-implemented prefixes
 		return BasePrefixedFormatter.with(new PrefixSegment[]{
 				PrefixBraces.Square.wrap(new TimePrefix()),
-//				PrefixBraces.Square.wrap(new LoggerNamePrefix()),
+				PrefixBraces.Square.wrap(new LoggersPrefix()),
 				PrefixBraces.Square.wrap(new ThreadNamePrefix()),
-//				PrefixBraces.Square.wrap(LogLevelPrefix.WITH_DEFAULT_MAPPER),
+				PrefixBraces.Square.wrap(new StackLocationPrefix()),
+				PrefixBraces.Square.wrap(LogLevelPrefix.USE_GLOBAL),
 		});
 	}
 	
@@ -82,7 +83,7 @@ public abstract class PrefixedFormatter implements ILogFormatter {
 				result.append('\n').append(ongoingText).append(separatorText).append(lines[i]);
 			}
 		}
-		return result.toString();
+		return result.append('\n').toString();
 	}
 	
 }

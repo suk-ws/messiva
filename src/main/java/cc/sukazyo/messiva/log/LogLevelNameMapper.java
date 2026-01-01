@@ -46,15 +46,6 @@ import java.util.Map;
 public class LogLevelNameMapper {
 	
 	public static final LogLevelNameMapper GLOBAL = new LogLevelNameMapper();
-	{
-		GLOBAL.mapName(LogLevels.ALL,   "####");
-		GLOBAL.mapName(LogLevels.DEBUG, "DBUG");
-		GLOBAL.mapName(LogLevels.INFO,  "INFO");
-		GLOBAL.mapName(LogLevels.WARN,  "WARN");
-		GLOBAL.mapName(LogLevels.ERROR, "ERRO");
-		GLOBAL.mapName(LogLevels.FATAL, "FTAL");
-		GLOBAL.mapName(LogLevels.NONE,  "!!!!");
-	}
 	
 	private final Map<ILogLevel, String> mapper = new HashMap<>();
 	private final Map<String, String> idMapper = new HashMap<>();
