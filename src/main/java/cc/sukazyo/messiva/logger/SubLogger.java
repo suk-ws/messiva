@@ -1,32 +1,33 @@
 package cc.sukazyo.messiva.logger;
 
 import cc.sukazyo.messiva.log.Log;
-import cc.sukazyo.messiva.manager.MessageManager;
 
 import javax.annotation.Nonnull;
 
-public class ManagedLogger implements Logger {
+public class SubLogger implements Logger {
 	
-	@Nonnull private final MessageManager logReceiver;
+	@Nonnull private final Logger parent;
 	@Nonnull private final String name;
 	@Nonnull private final String[] fullName;
 	
-	public ManagedLogger (@Nonnull String name, @Nonnull MessageManager logReceiver) {
+	public SubLogger (@Nonnull Logger parent, @Nonnull String name) {
+		this.parent = parent;
 		this.name = name;
-		this.fullName = new String[] { name };
-		this.logReceiver = logReceiver;
+		this.fullName = new String[parent.getFullName().length + 1];
+		System.arraycopy(parent.getFullName(), 0, this.fullName, 0, parent.getFullName().length);
+		this.fullName[this.fullName.length - 1] = name;
 	}
 	
 	@Nonnull
 	@Override
 	public String getName () {
-		return name;
+		return this.name;
 	}
 	
 	@Nonnull
 	@Override
 	public String[] getFullName () {
-		return fullName;
+		return this.fullName;
 	}
 	
 	@Nonnull
@@ -37,7 +38,7 @@ public class ManagedLogger implements Logger {
 	
 	@Override
 	public void receiveLog (@Nonnull Log log) {
-		logReceiver.receiveLog(log);
+		parent.receiveLog(log);
 	}
 	
 }

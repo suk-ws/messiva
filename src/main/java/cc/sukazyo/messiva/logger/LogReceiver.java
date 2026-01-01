@@ -1,4 +1,4 @@
-package cc.sukazyo.messiva.manager;
+package cc.sukazyo.messiva.logger;
 
 import cc.sukazyo.messiva.log.Log;
 

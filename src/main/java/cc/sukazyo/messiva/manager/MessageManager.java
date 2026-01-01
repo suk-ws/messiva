@@ -2,6 +2,7 @@ package cc.sukazyo.messiva.manager;
 
 import cc.sukazyo.messiva.log.Log;
 import cc.sukazyo.messiva.logger.ILoggerProvider;
+import cc.sukazyo.messiva.logger.LogReceiver;
 import cc.sukazyo.messiva.logger.Logger;
 import cc.sukazyo.messiva.logger.ManagedLogger;
 
