@@ -1,11 +1,11 @@
 package cc.sukazyo.messiva.logger;
 
 import cc.sukazyo.messiva.log.Log;
-import cc.sukazyo.messiva.logger.wrapper.WrappedAbstractLogger;
+import cc.sukazyo.messiva.logger.wrapper.ConcreteAbstractLogger;
 
 import javax.annotation.Nonnull;
 
-public class NoLogLogger implements Logger, WrappedAbstractLogger {
+public class NoLogLogger implements Logger, ConcreteAbstractLogger {
 	
 	public static final NoLogLogger INSTANCE = new NoLogLogger();
 	

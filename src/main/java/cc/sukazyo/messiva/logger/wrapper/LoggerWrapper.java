@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
  * </p>
  *
  * <p>
- *     To avoid this and get a proper implements warning, you should implement {@link WrappedAbstractLogger}
+ *     To avoid this and get a proper implements warning, you should implement {@link ConcreteAbstractLogger}
  *     after every interfaces that extends this interface.That is a helper interface that
  *     re-declares all methods in {@link AbstractLogger} as abstract methods. By doing so, the
  *     compiler will require you to implement those methods properly, avoiding infinite recursion.
@@ -38,7 +38,7 @@ import javax.annotation.Nonnull;
  * <p>
  *     Like saying before in the implementation note, if any default implementation of methods
  *     in {@link AbstractLogger} was added in this interface (as a forwarding method to {@link #self()}),
- *     you must add the same method as an abstract method in {@link WrappedAbstractLogger} as well.
+ *     you must add the same method as an abstract method in {@link ConcreteAbstractLogger} as well.
  * </p>
  *
  */

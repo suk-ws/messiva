@@ -1,12 +1,12 @@
 package cc.sukazyo.messiva.logger;
 
 import cc.sukazyo.messiva.log.Log;
-import cc.sukazyo.messiva.logger.wrapper.WrappedAbstractLogger;
+import cc.sukazyo.messiva.logger.wrapper.ConcreteAbstractLogger;
 import cc.sukazyo.messiva.manager.MessageManager;
 
 import javax.annotation.Nonnull;
 
-public class ManagedLogger implements Logger, WrappedAbstractLogger {
+public class ManagedLogger implements Logger, ConcreteAbstractLogger {
 	
 	@Nonnull private final MessageManager logReceiver;
 	@Nonnull private final String name;

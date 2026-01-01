@@ -6,7 +6,7 @@ import cc.sukazyo.messiva.logger.Logger;
 
 import javax.annotation.Nonnull;
 
-public interface WrappedAbstractLogger extends AbstractLogger {
+public interface ConcreteAbstractLogger extends AbstractLogger {
 	
 	@Nonnull
 	@Override

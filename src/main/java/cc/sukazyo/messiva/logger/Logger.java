@@ -1,6 +1,7 @@
 package cc.sukazyo.messiva.logger;
 
 import cc.sukazyo.messiva.log.Log;
+import cc.sukazyo.messiva.logger.wrapper.ConcreteAbstractLogger;
 import cc.sukazyo.messiva.logger.wrapper.LevelLoggingLoggerWrapper;
 
 import javax.annotation.Nonnull;
@@ -22,7 +23,7 @@ import javax.annotation.Nonnull;
  *
  * <p>
  *     In short, if you implement method {@link #self()} to return {@code this}, you should
- *     implement the helper interface {@link cc.sukazyo.messiva.logger.wrapper.WrappedAbstractLogger}
+ *     implement the helper interface {@link ConcreteAbstractLogger}
  *     at the most end to get proper warnings about unimplemented methods.
  * </p>
  */
