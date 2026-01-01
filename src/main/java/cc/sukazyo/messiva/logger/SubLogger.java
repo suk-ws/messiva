@@ -1,10 +1,11 @@
 package cc.sukazyo.messiva.logger;
 
 import cc.sukazyo.messiva.log.Log;
+import cc.sukazyo.messiva.logger.wrapper.WrappedAbstractLogger;
 
 import javax.annotation.Nonnull;
 
-public class SubLogger implements Logger {
+public class SubLogger implements Logger, WrappedAbstractLogger {
 	
 	@Nonnull private final Logger parent;
 	@Nonnull private final String name;
