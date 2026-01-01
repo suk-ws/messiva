@@ -2,7 +2,7 @@ package cc.sukazyo.messiva.io;
 
 public final class StdIOBinder implements LoggingIOBinder, ActiveIOBinder, PromptIOBinder {
 	
-	private static final StdIOBinder INSTANCE = new StdIOBinder();
+	public static final StdIOBinder INSTANCE = new StdIOBinder();
 	
 	private StdIOBinder () {}
 	
