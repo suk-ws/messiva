@@ -22,65 +22,51 @@ import javax.annotation.Nonnull;
 public abstract class PrefixedFormatter implements ILogFormatter {
 	
 	@Nonnull
-	public static PrefixedFormatter with (@Nonnull PrefixSegment[] segments, @Nonnull PrefixSegment[] separator) {
-		return BasePrefixedFormatter.with(segments, separator);
+	protected abstract Segment[] getPrefixes (@Nonnull Log log);
+	
+	@Nonnull
+	protected Segment[] getOngoingPrefixes (@Nonnull Log log, @Nonnull String previous) {
+		return getPrefixes(log);
 	}
 	
 	@Nonnull
-	public static PrefixedFormatter with (@Nonnull PrefixSegment[] segments) {
-		// *user defined prefix* | Some messages...
-		return BasePrefixedFormatter.with(segments, new PrefixSegment[]{
-				PrefixTexts.Space, PrefixTexts.VerticalBar, PrefixTexts.Space
-		});
+	protected abstract Segment[] getSeparator (@Nonnull Log log);
+	
+	@Nonnull
+	protected Segment[] getOngoingSeparator (@Nonnull Log log, @Nonnull String previous) {
+		return getSeparator(log);
 	}
-	
-	@Nonnull
-	public static PrefixedFormatter inDefault () {
-		// [1979-01-01T00:00:00.000][messiva-test][main][ERRO] | Some messages...
-		// fixme: complete the remaining un-implemented prefixes
-		return BasePrefixedFormatter.with(new PrefixSegment[]{
-				PrefixBraces.Square.wrap(new TimePrefix()),
-				PrefixBraces.Square.wrap(new LoggersPrefix()),
-				PrefixBraces.Square.wrap(new ThreadNamePrefix()),
-				PrefixBraces.Square.wrap(new StackLocationPrefix()),
-				PrefixBraces.Square.wrap(LogLevelPrefix.USE_GLOBAL),
-		});
-	}
-	
-	@Nonnull
-	protected abstract PrefixSegment[] getPromptPrefixes (@Nonnull Log log);
-	
-	@Nonnull
-	protected abstract PrefixSegment[] getOngoingPrefixes (@Nonnull Log log, @Nonnull String promptPrefix);
-	
-	@Nonnull
-	protected abstract PrefixSegment[] getSeparatorPrefixes (@Nonnull Log log);
 	
 	@Nonnull
 	@Override
 	public String format (@Nonnull Log log) {
-		final StringBuilder prompt = new StringBuilder();
-		final StringBuilder ongoing = new StringBuilder();
-		final StringBuilder separator = new StringBuilder();
-		for (PrefixSegment segment : getPromptPrefixes(log)) {
-			prompt.append(segment.text(log));
+		final StringBuilder sbPrefix = new StringBuilder();
+		final StringBuilder sbOngoingPrefix = new StringBuilder();
+		final StringBuilder sbSeparator = new StringBuilder();
+		final StringBuilder sbOngoingSeparator = new StringBuilder();
+		for (Segment segment : getPrefixes(log)) {
+			sbPrefix.append(segment.text(log));
 		}
-		final String promptText = prompt.toString();
-		for (PrefixSegment segment : getOngoingPrefixes(log, promptText)) {
-			ongoing.append(segment.text(log));
+		final String prefix = sbPrefix.toString();
+		for (Segment segment : getOngoingPrefixes(log, prefix)) {
+			sbOngoingPrefix.append(segment.text(log));
 		}
-		for (PrefixSegment segment : getSeparatorPrefixes(log)) {
-			separator.append(segment.text(log));
+		final String ongoingPrefix = sbOngoingPrefix.toString();
+		for (Segment segment : getSeparator(log)) {
+			sbSeparator.append(segment.text(log));
 		}
-		final String ongoingText = ongoing.toString();
-		final String separatorText = separator.toString();
-		final String[] lines = StringUtils.lines(log.message().getText());
+		final String separator = sbSeparator.toString();
+		for (Segment segment : getOngoingSeparator(log, separator)) {
+			sbOngoingSeparator.append(segment.text(log));
+		}
+		final String ongoingSeparator = sbOngoingSeparator.toString();
+		final String[] lines = StringUtils.lines(log.messageAndException());
 		final StringBuilder result = new StringBuilder();
 		for (int i = 0; i < lines.length; i++) {
 			if (i == 0) {
-				result.append(promptText).append(separatorText).append(lines[i]);
+				result.append(prefix).append(separator).append(lines[i]);
 			} else {
-				result.append('\n').append(ongoingText).append(separatorText).append(lines[i]);
+				result.append('\n').append(ongoingPrefix).append(ongoingSeparator).append(lines[i]);
 			}
 		}
 		return result.append('\n').toString();

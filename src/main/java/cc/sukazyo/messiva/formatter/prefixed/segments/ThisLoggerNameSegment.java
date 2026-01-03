@@ -5,7 +5,9 @@ import cc.sukazyo.messiva.logger.ILoggerInfo;
 
 import javax.annotation.Nonnull;
 
-public class ThisLoggerNamePrefix implements PrefixSegment {
+public class ThisLoggerNameSegment implements Segment {
+	
+	public static final ThisLoggerNameSegment INSTANCE = new ThisLoggerNameSegment();
 	
 	@Nonnull
 	@Override

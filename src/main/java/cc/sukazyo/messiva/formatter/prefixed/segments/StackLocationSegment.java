@@ -4,7 +4,9 @@ import cc.sukazyo.messiva.log.Log;
 
 import javax.annotation.Nonnull;
 
-public class StackLocationPrefix implements PrefixSegment {
+public class StackLocationSegment implements Segment {
+	
+	public static final StackLocationSegment INSTANCE = new StackLocationSegment();
 	
 	@Nonnull
 	@Override

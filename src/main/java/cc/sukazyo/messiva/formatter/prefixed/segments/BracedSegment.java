@@ -4,13 +4,13 @@ import cc.sukazyo.messiva.log.Log;
 
 import javax.annotation.Nonnull;
 
-public class BracedPrefix implements PrefixSegment {
+public class BracedSegment implements Segment {
 	
-	@Nonnull private final PrefixSegment segment;
+	@Nonnull private final Segment segment;
 	@Nonnull private final String left;
 	@Nonnull private final String right;
 	
-	public BracedPrefix (@Nonnull String left, @Nonnull PrefixSegment segment, @Nonnull String right) {
+	public BracedSegment (@Nonnull String left, @Nonnull Segment segment, @Nonnull String right) {
 		this.segment = segment;
 		this.left = left;
 		this.right = right;

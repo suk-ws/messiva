@@ -4,12 +4,14 @@ import cc.sukazyo.messiva.log.Log;
 
 import javax.annotation.Nonnull;
 
-public class ThreadNamePrefix implements PrefixSegment {
+public class TimestampSegment implements Segment {
+	
+	public static final TimestampSegment INSTANCE = new TimestampSegment();
 	
 	@Nonnull
 	@Override
 	public String text (@Nonnull Log log) {
-		return Thread.currentThread().getName();
+		return String.valueOf(log.timestamp());
 	}
 	
 }

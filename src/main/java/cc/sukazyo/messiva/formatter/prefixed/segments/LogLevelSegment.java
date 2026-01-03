@@ -5,19 +5,19 @@ import cc.sukazyo.messiva.log.level.LogLevelNameMapper;
 
 import javax.annotation.Nonnull;
 
-public class LogLevelPrefix implements PrefixSegment {
+public class LogLevelSegment implements Segment {
 	
-	public static final LogLevelPrefix USE_GLOBAL = new LogLevelPrefix(LogLevelNameMapper.GLOBAL);
+	public static final LogLevelSegment USE_GLOBAL = LogLevelSegment.useMapper(LogLevelNameMapper.GLOBAL);
 	
 	@Nonnull private final LogLevelNameMapper nameMapper;
 	
-	public LogLevelPrefix (@Nonnull LogLevelNameMapper nameMapper) {
+	private LogLevelSegment (@Nonnull LogLevelNameMapper nameMapper) {
 		this.nameMapper = nameMapper;
 	}
 	
 	@Nonnull
-	public static LogLevelPrefix useMapper (@Nonnull LogLevelNameMapper nameMapper) {
-		return new LogLevelPrefix(nameMapper);
+	public static LogLevelSegment useMapper (@Nonnull LogLevelNameMapper nameMapper) {
+		return new LogLevelSegment(nameMapper);
 	}
 	
 	@Nonnull
