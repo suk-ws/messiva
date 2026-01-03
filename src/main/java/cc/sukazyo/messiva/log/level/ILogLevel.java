@@ -1,4 +1,4 @@
-package cc.sukazyo.messiva.log;
+package cc.sukazyo.messiva.log.level;
 
 import javax.annotation.Nonnull;
 

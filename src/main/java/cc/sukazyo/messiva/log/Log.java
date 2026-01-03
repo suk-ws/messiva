@@ -4,13 +4,13 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import cc.sukazyo.messiva.log.level.ILogLevel;
 import cc.sukazyo.messiva.log.message.IMessage;
 import cc.sukazyo.std.contexts.GivenContext;
-import cc.sukazyo.std.stacks.StacksExtensions;
 import cc.sukazyo.std.stacks.WithCurrentStack;
+import cc.sukazyo.std.throwable.Exceptions;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 @LoggingInternal
 public class Log {
@@ -30,6 +30,18 @@ public class Log {
 	@Nonnull public StackTraceElement[] rawStackTrace () { return this.stackTrace; }
 	@Nullable public Exception exception () { return this.exception; }
 	@Nonnull public GivenContext context () { return this.context; }
+	
+	/**
+	 * Get the log message combined with exception stack trace if exists.
+	 */
+	@Nonnull public String messageAndException () {
+		final Exception e = this.exception;
+		if (e == null) {
+			return this.message.getText();
+		} else {
+			return this.message.getText() + "\n" + Exceptions.printString(e);
+		}
+	}
 	
 	/**
 	 * Get the stack trace indicates where this log was created.

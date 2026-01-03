@@ -1,4 +1,4 @@
-package cc.sukazyo.messiva.log;
+package cc.sukazyo.messiva.log.level;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +46,7 @@ import java.util.Map;
 public class LogLevelNameMapper {
 	
 	public static final LogLevelNameMapper GLOBAL = new LogLevelNameMapper();
+	public static final LogLevelNameMapper SYMBOL = new LogLevelNameMapper();
 	
 	private final Map<ILogLevel, String> mapper = new HashMap<>();
 	private final Map<String, String> idMapper = new HashMap<>();

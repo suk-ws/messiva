@@ -1,4 +1,4 @@
-package cc.sukazyo.messiva.log;
+package cc.sukazyo.messiva.log.level;
 
 import javax.annotation.Nonnull;
 
@@ -14,6 +14,7 @@ public enum LogLevels implements ILogLevel {
 	NONE (Float.MAX_VALUE,  "none");
 	
 	static {
+		
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.ALL,   "####");
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.DEBUG, "DBUG");
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.INFO,  "INFO");
@@ -21,6 +22,14 @@ public enum LogLevels implements ILogLevel {
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.ERROR, "ERRO");
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.FATAL, "FTAL");
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.NONE,  "!!!!");
+		
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.TRACE, "🔍");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.DEBUG, "🐛");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.INFO,  "ℹ️");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.WARN,  "⚠️");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.ERROR, "❌");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.FATAL, "💀");
+		
 	}
 	
 	public final float level;

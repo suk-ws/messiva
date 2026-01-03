@@ -1,7 +1,7 @@
 package cc.sukazyo.messiva.logger.wrapper;
 
 import cc.sukazyo.messiva.log.Log;
-import cc.sukazyo.messiva.log.LogLevels;
+import cc.sukazyo.messiva.log.level.LogLevels;
 import cc.sukazyo.messiva.log.LoggingInternal;
 import cc.sukazyo.messiva.log.message.TextMessage;
 
