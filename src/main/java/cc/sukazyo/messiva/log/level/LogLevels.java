@@ -23,12 +23,12 @@ public enum LogLevels implements ILogLevel {
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.FATAL, "FTAL");
 		LogLevelNameMapper.GLOBAL.mapName(LogLevels.NONE,  "!!!!");
 		
-		LogLevelNameMapper.SYMBOL.mapName(LogLevels.TRACE, "🔍");
-		LogLevelNameMapper.SYMBOL.mapName(LogLevels.DEBUG, "🐛");
-		LogLevelNameMapper.SYMBOL.mapName(LogLevels.INFO,  "ℹ️");
-		LogLevelNameMapper.SYMBOL.mapName(LogLevels.WARN,  "⚠️");
-		LogLevelNameMapper.SYMBOL.mapName(LogLevels.ERROR, "❌");
-		LogLevelNameMapper.SYMBOL.mapName(LogLevels.FATAL, "💀");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.TRACE, ".");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.DEBUG, "*");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.INFO,  "I");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.WARN,  "W");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.ERROR, "E");
+		LogLevelNameMapper.SYMBOL.mapName(LogLevels.FATAL, "!");
 		
 	}
 	
